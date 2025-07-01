@@ -75,11 +75,15 @@ abstract class AbstractCollection implements CollectionInterface
         }, $results);
     }
 
-    public function supports(Item $item): bool {
+    public function supports(Item $item): bool
+    {
         $class = $this->getClass();
         return $item instanceof $class;
     }
 
+    /**
+     * @return class-string<Item>
+     */
     abstract protected function getClass(): string;
 
 

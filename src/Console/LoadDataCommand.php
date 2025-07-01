@@ -37,6 +37,7 @@ class LoadDataCommand extends Command
 
         $output->writeln('Starting to process request.json...');
 
+        $this->storageService->request = $fileContent;
         $this->storageService->loadData();
 
         $output->writeln('Command executed successfully!');

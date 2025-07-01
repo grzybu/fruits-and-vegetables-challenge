@@ -17,11 +17,10 @@ class StorageServiceTest extends TestCase
         $storageService = new StorageService([], $request);
         $this->assertNotEmpty($storageService->request);
     }
-
     public function testReceivingRequestWithEmptyData(): void
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Request path cannot be empty');
+        $this->expectExceptionMessage('Request cannot be empty');
 
         $storageService = new StorageService([]);
         $storageService->loadData();
@@ -43,27 +42,29 @@ class StorageServiceTest extends TestCase
         $fruitCollection = $this->createPartialMock(FruitCollection::class, ['add', 'clear']);
         $vegetableCollection = $this->createPartialMock(VegetableCollection::class, ['add', 'clear']);
 
-        $fruitCollection->expects($this->exactly(1))
+        $fruitCollection->expects($this->once())
             ->method('add');
 
         $vegetableCollection->expects($this->exactly(2))
             ->method('add');
 
+        $fruitCollection->expects($this->once())
+            ->method('clear');
 
+        $vegetableCollection->expects($this->once())
+            ->method('clear');
 
         $storageService = new StorageService(
             [
-                $fruitCollection
-            ], $validJson
-
+                $fruitCollection,
+                $vegetableCollection
+            ],
+            $validJson
         );
 
         $this->assertNotEmpty($storageService->request);
-        $this->assertIsString($storageService->request);
 
         // Assuming loadData processes the request and does not throw an exception
         $storageService->loadData();
-
-
     }
 }

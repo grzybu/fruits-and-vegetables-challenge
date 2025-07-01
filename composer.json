@@ -60,7 +60,11 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "doctrine:database:drop --force": "symfony-cmd",
+            "doctrine:database:create": "symfony-cmd",
+            "doctrine:schema:create": "symfony-cmd",
+            "app:load-data": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"

@@ -27,7 +27,7 @@ class StorageService
     public function loadData(bool $clearOldData = true): void
     {
         if (empty($this->request)) {
-            throw new \InvalidArgumentException('Request path cannot be empty');
+            throw new \InvalidArgumentException('Request cannot be empty');
         }
 
         if (!json_validate($this->request)) {
