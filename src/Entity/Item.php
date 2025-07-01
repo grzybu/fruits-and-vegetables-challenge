@@ -24,5 +24,18 @@ abstract class Item
         $this->quantity = $quantity;
     }
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getQuantity(): int
+    {
+        return $this->quantity;
+    }
 }

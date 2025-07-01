@@ -1,7 +1,17 @@
 controllers:
     resource: ../src/Controller/
-    type: annotation
+    type: attribute
 
 kernel:
     resource: ../src/Kernel.php
-    type: annotation
+    type: attribute
+
+api_fruits_index:
+    path: /fruits
+    methods: [GET]
+    controller: App\Controller\ItemController.fruit
+
+api_vegetables_index:
+    path: /vegetables
+    methods: [GET]
+    controller: App\Controller\ItemController.vegetable

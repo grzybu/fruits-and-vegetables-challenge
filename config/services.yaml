@@ -22,7 +22,29 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones]
+    App\Controller\:
+        resource: '../src/Controller/'
+        tags: [ 'controller.service_arguments' ]
+        public: true
+        exclude:
+            - '../src/Controller/ItemController.php'
 
+    App\Controller\FruitController: ~
+    App\Controller\VegetableController: ~
+
+    App\Controller\ItemController.fruit:
+        class: App\Controller\ItemController
+        arguments:
+            - '@App\Collection\FruitCollection'
+            - 'Fruits retrieved successfully.'
+        tags: [ 'controller.service_arguments' ]
+
+    App\Controller\ItemController.vegetable:
+        class: App\Controller\ItemController
+        arguments:
+            - '@App\Collection\VegetableCollection'
+            - 'Vegetables retrieved successfully.'
+        tags: [ 'controller.service_arguments' ]
 
     App\Service\StorageService:
         arguments:

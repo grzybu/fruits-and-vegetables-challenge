@@ -7,8 +7,13 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class FruitCollection extends AbstractCollection
 {
-    public function __construct(EntityManagerInterface $em, string $className = Fruit::class)
+    public function __construct(EntityManagerInterface $em)
     {
-        parent::__construct($em, $className);
+        parent::__construct($em);
+    }
+
+    protected function getClass(): string
+    {
+        return Fruit::class;
     }
 }
